@@ -5,6 +5,36 @@
 }
 
 body {
+    background-color: lightblue;
     display: flex;
     justify-content: center;
+}
+form {
+    text-align: center;
+    width: 100%;
+    padding: 4em;
+    background-color: lightcyan;
+}
+form label {
+    font-size: 2em;
+}
+form button,
+form input {
+    font-size: 1.5em;
+    border-radius: 10px;
+    outline: none;
+}
+form button {
+    padding: 5px;
+}
+
+dialog {
+    background: whitesmoke;
+    width: 40%;
+    height: 35%;
+    border-radius: 10px;
+
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%)
 }
