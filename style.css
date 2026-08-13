@@ -38,10 +38,10 @@ dialog {
     left: 50%;
     transform: translate(-50%, -50%)
 }
-.loc-name.capitalize-all-word {
-    text-transform: uppercase;
+#location-name .capitalize-all-words {
+    text-transform: capitalize;
 }
-.loc-name {
+#location-name {
     font-size: 1.3em;
     color: black;
     padding: 1px;

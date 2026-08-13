@@ -4,6 +4,12 @@ const search = document.getElementById("search-btn")
 const dialog = document.querySelector("dialog")
 
 
+function capitalize(str) {
+    const firstLetter = str.charAt(0).toUpperCase()
+    const restLetters = str.slice(1).toLowerCase()
+    return firstLetter + restLetters
+}
+
 async function fetchData(location) {
     try {
         const fetched = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location.value}/?key=93AYJZ55PKFC6XT7D5FMLZGF6&unitGroup=uk`)
@@ -13,20 +19,13 @@ async function fetchData(location) {
         console.error("Couldnt fetch location", error)
     }
 }
-function Capitilize(str) {
-    firstLetter = str.charAt(0).toUpperCase()
-    restLetters = str.slice(1).toLowerCase()
-    return firstLetter + restLetters
-}
 
 form.addEventListener("submit", async (e) => {
     const result = await fetchData(locationInput)
 
     console.log(result)
-    console.log(result.resolvedAddress)
-    const locationName = document.createElement("p")
-    locationName.className = "loc-name"
-    locationName.textContent = Capitilize(result.address)
+    const locationName = document.getElementById("location-name")
+    locationName.textContent = capitalize(result.resolvedAddress)
     dialog.appendChild(locationName)
     dialog.show()
 })
