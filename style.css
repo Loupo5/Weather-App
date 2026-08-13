@@ -12,7 +12,7 @@ body {
 form {
     text-align: center;
     width: 100%;
-    padding: 4em;
+    padding: 3em;
     background-color: lightcyan;
 }
 form label {
@@ -37,4 +37,12 @@ dialog {
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%)
+}
+.loc-name.capitalize-all-word {
+    text-transform: uppercase;
+}
+.loc-name {
+    font-size: 1.3em;
+    color: black;
+    padding: 1px;
 }
