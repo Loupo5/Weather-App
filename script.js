@@ -28,13 +28,14 @@ function capitalize(str) {
 function getHtmlData() {
     const locationName = document.getElementById("location-name")
     const locationTemp = document.getElementById("temp")
+    const degree = document.getElementById("degree")
     const conditions = document.getElementById("conditions")
     const feelslike = document.getElementById("feelslike")
     const humidity = document.getElementById("humidity")
     const uvindex = document.getElementById("uvindex")
 
-    return {locationName, locationTemp, conditions,
-            feelslike, humidity, uvindex}
+    return {locationName, locationTemp, degree,
+         conditions, feelslike, humidity, uvindex}
 
 }
 
@@ -69,6 +70,7 @@ function fetchData(location) {
 
     html.locationName.textContent = capitalize(result.resolvedAddress)
     html.locationTemp.textContent = result.currentConditions.temp
+    html.degree.textContent = degreeCels
     html.conditions.textContent = `"${result.currentConditions.conditions}`
     html.feelslike.textContent = `Feels like: ${result.currentConditions.feelslike}${degreeCels}`
     html.humidity.textContent = `Humidity: ${result.currentConditions.humidity}%`
