@@ -95,12 +95,50 @@ form.addEventListener("submit", async (e) => {
 
     console.log(result)
     html.locationName.textContent = capitalize(result.address)
-    html.locationTemp.textContent = `${result.currentConditions.temp}`
+    html.locationTemp.textContent = await `${result.currentConditions.temp}`
     html.conditions.textContent = `"${result.currentConditions.conditions}"`
-    html.feelslike.textContent = `Feels like: ${result.currentConditions.feelslike}${degreeCels}`
+    html.feelslike.textContent = await `Feels like: ${result.currentConditions.feelslike}${degreeCels}`
     html.humidity.textContent = `Humidity: ${result.currentConditions.humidity}%`
     html.uvindex.textContent = `UV index: ${result.currentConditions.uvindex}`
     updateWeatherIcon(result.currentConditions.temp)
     dialog.show()
     
+})
+
+function changeToFahr(cels) {
+    const fahr = (cels * 9/5) + 32
+    return fahr.toFixed(1)
+}
+function changeToCels(fahr) {
+    const cels = (fahr - 32) * 5/9
+    return cels.toFixed(1)
+}
+
+const tempDegree = document.querySelector(".temp-degree")
+const tempNumber = document.getElementById("temp")
+
+
+
+const degreeBtn = document.getElementById("degree")
+degreeBtn.addEventListener("click", (e) => {
+    const feelslikeTempNumber = document.getElementById("feelslike")
+    const feelslikeNum = parseFloat(feelslikeTempNumber.textContent.replace("Feels like: ", ""))
+
+    if (degreeBtn.classList.contains("celsius")) {
+        degreeBtn.classList.remove("celsius")
+        degreeBtn.classList.add("fahrenheit")
+        degreeBtn.textContent = degreeFahr
+        const fahr = changeToFahr(tempNumber.textContent)
+        tempNumber.textContent = fahr
+        const feelslikeFahr = changeToFahr(feelslikeNum)
+        feelslikeTempNumber.textContent = `Feels like: ${feelslikeFahr}${degreeFahr}`
+    } else {
+        degreeBtn.classList.remove("fahrenheit")
+        degreeBtn.classList.add("celsius")
+        degreeBtn.textContent = degreeCels
+        const cels = changeToCels(tempNumber.textContent)
+        tempNumber.textContent = cels
+        const feelslikeCels = changeToCels(feelslikeNum)
+        feelslikeTempNumber.textContent = `Feels like: ${feelslikeCels}${degreeCels}`
+    }
 })

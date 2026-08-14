@@ -110,6 +110,20 @@ dialog[open] {
 }
 #degree {
     font-size: 5em;
+    cursor: pointer;
+}
+
+.celsius {
+    background-color: transparent;
+    color: black;
+    border: none;
+    outline: none;
+}
+.fahrenheit {
+    color: white;
+    background-color: transparent;
+    border: none;
+    outline: none;
 }
 
 .right {
