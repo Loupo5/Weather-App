@@ -3,6 +3,7 @@ const locationInput = document.getElementById("loc")
 const search = document.getElementById("search-btn")
 const dialog = document.querySelector("dialog")
 const leftDialog = document.querySelector(".left")
+const weatherImg = document.getElementById("weather-img")
 
 const degreeCels = "\u00B0C"
 const degreeFahr = "\u00B0F"
@@ -39,6 +40,14 @@ function getHtmlData() {
 
 }
 
+function updateWeatherIcon(temperature) {
+        if (temperature > 20) {
+            weatherImg.src = "svgs/sunny.svg"
+        } else if (temperature < 3) {
+            weatherImg.src = "svgs/snowy.svg"
+        } else weatherImg.src = "svgs/cloudy.svg"
+    }
+
 function fetchData(location) {
     return new Promise(function(resolve, reject) {
         fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/?key=93AYJZ55PKFC6XT7D5FMLZGF6&unitGroup=uk`)
@@ -68,13 +77,14 @@ function fetchData(location) {
     const result = await fetchData(randomLocation)
     const html = getHtmlData()
 
-    html.locationName.textContent = capitalize(result.resolvedAddress)
+    html.locationName.textContent = capitalize(result.address)
     html.locationTemp.textContent = result.currentConditions.temp
     html.degree.textContent = degreeCels
-    html.conditions.textContent = `"${result.currentConditions.conditions}`
+    html.conditions.textContent = `"${result.currentConditions.conditions}"`
     html.feelslike.textContent = `Feels like: ${result.currentConditions.feelslike}${degreeCels}`
     html.humidity.textContent = `Humidity: ${result.currentConditions.humidity}%`
     html.uvindex.textContent = `UV index: ${result.currentConditions.uvindex}`
+    updateWeatherIcon(result.currentConditions.temp)
     dialog.show()
 })()
 
@@ -84,17 +94,13 @@ form.addEventListener("submit", async (e) => {
     const html = getHtmlData()
 
     console.log(result)
-    html.locationName.textContent = capitalize(result.resolvedAddress)
-
+    html.locationName.textContent = capitalize(result.address)
     html.locationTemp.textContent = `${result.currentConditions.temp}`
-    
-
     html.conditions.textContent = `"${result.currentConditions.conditions}"`
-
     html.feelslike.textContent = `Feels like: ${result.currentConditions.feelslike}${degreeCels}`
-
-    html.humidity.textContent = `Humidity: ${result.currentConditions.humidity} %`
-
+    html.humidity.textContent = `Humidity: ${result.currentConditions.humidity}%`
     html.uvindex.textContent = `UV index: ${result.currentConditions.uvindex}`
+    updateWeatherIcon(result.currentConditions.temp)
     dialog.show()
+    
 })
