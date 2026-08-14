@@ -75,9 +75,11 @@ function fetchData(location) {
     html.feelslike.textContent = `Feels like: ${result.currentConditions.feelslike}${degreeCels}`
     html.humidity.textContent = `Humidity: ${result.currentConditions.humidity}%`
     html.uvindex.textContent = `UV index: ${result.currentConditions.uvindex}`
+    dialog.show()
 })()
 
 form.addEventListener("submit", async (e) => {
+    dialog.close()
     const result = await fetchData(locationInput.value)
     const html = getHtmlData()
 
