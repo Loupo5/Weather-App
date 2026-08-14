@@ -4,6 +4,9 @@ const search = document.getElementById("search-btn")
 const dialog = document.querySelector("dialog")
 const leftDialog = document.querySelector(".left")
 
+const degreeCels = "\u00B0C"
+const degreeFahr = "\u00B0F"
+
 
 function capitalize(str) {
     const firstLetter = str.charAt(0).toUpperCase()
@@ -29,9 +32,12 @@ form.addEventListener("submit", async (e) => {
     locationName.textContent = capitalize(result.resolvedAddress)
 
     const locationTemp = document.getElementById("temp")
-    locationTemp.textContent = `${result.currentConditions.temp}\u00B0C`
+    locationTemp.textContent = `${result.currentConditions.temp}${degreeCels}`
 
     const conditions = document.getElementById("conditions")
     conditions.textContent = result.currentConditions.conditions
+
+    const feelslike = document.getElementById("feelslike")
+    feelslike.textContent = `Feels like: ${result.currentConditions.feelslike}${degreeCels}`
     dialog.show()
 })
