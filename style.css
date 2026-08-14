@@ -46,6 +46,7 @@ form input {
 }
 form button {
     padding: 5px;
+    cursor: pointer
 }
 
 dialog {

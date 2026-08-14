@@ -8,6 +8,17 @@ const degreeCels = "\u00B0C"
 const degreeFahr = "\u00B0F"
 
 
+function getRandomLocation() {
+    const defaultLocations = [
+        "Tokyo", "New York", "Zagreb", 
+        "Moscow","Berlin", "Brazilia",
+        "Nagoya", "Ankara", "Cairo"
+    ]
+    const randomNum = Math.floor(Math.random() * defaultLocations.length)
+    const randomLocation = defaultLocations[randomNum]
+    return randomLocation
+}
+
 function capitalize(str) {
     const firstLetter = str.charAt(0).toUpperCase()
     const restLetters = str.slice(1).toLowerCase()
@@ -34,6 +45,9 @@ function fetchData(location) {
         .then(data => {
             resolve(data)
         })
+        .catch(err => {
+            console.error("Could not fetch data", err)
+        })
     })
 }
 
@@ -49,7 +63,8 @@ function fetchData(location) {
 }*/
 
 (async function () {
-    const result = await fetchData("Nagoya")
+    const randomLocation = getRandomLocation()
+    const result = await fetchData(randomLocation)
     const html = getHtmlData()
 
     html.locationName.textContent = capitalize(result.resolvedAddress)
