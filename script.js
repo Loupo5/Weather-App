@@ -2,6 +2,7 @@ const form = document.querySelector("form")
 const locationInput = document.getElementById("loc")
 const search = document.getElementById("search-btn")
 const dialog = document.querySelector("dialog")
+const leftDialog = document.querySelector(".left")
 
 
 function capitalize(str) {
@@ -26,6 +27,10 @@ form.addEventListener("submit", async (e) => {
     console.log(result)
     const locationName = document.getElementById("location-name")
     locationName.textContent = capitalize(result.resolvedAddress)
-    dialog.appendChild(locationName)
+    leftDialog.appendChild(locationName)
+
+    const locationTemp = document.getElementById("temp")
+    locationTemp.textContent = `${result.currentConditions.temp}\u00B0C`
+    leftDialog.appendChild(locationTemp)
     dialog.show()
 })

@@ -25,21 +25,26 @@ form label {
 }
 form button,
 form input {
+    color: white;
     font-size: 1.5em;
     border-radius: 10px;
+    background: rgba(0, 0, 0, 0.05);
     outline: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 form button {
     padding: 5px;
 }
 
 dialog {
+    color: white;
     display: grid;
     grid-template-columns: 1fr 1fr;
     position: absolute;
-    background: whitesmoke;
+    background: rgba(0, 0, 0, 0.05);
     width: 50%;
     height: 40%;
+    border: none;
     border-radius: 10px;
 
     top: 60%;
@@ -49,23 +54,23 @@ dialog {
 
 .left {
     display: grid;
-    justify-content: center;
     grid-template-rows: 1fr 2fr;
 }
 
 #location-name {
     grid-row: 1 / 2;
-    font-size: 1.3em;
-    color: black;
+    font-size: 5em;
     padding: 1px;
 }
 
 #temp {
     grid-row: 2 / 3;
+    font-size: 8em;
 }
 
 .right {
     display: grid;
+    justify-content: center;
     grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 
