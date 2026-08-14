@@ -71,21 +71,26 @@ dialog {
 .right {
     display: grid;
     justify-content: center;
+    align-items: center;
     grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 
 #conditions {
+    font-size: 1.5em;
     grid-row: 1 / 2;
 }
 
 #feelslike {
+    font-size: 1.5em;
     grid-row: 2 / 3;
 }
 
 #humidity {
+    font-size: 1.5em;
     grid-row: 3 / 4;
 }
 
 #uvindex {
+    font-size: 1.5em;
     grid-row: 4 / 5;
 }

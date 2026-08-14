@@ -27,10 +27,11 @@ form.addEventListener("submit", async (e) => {
     console.log(result)
     const locationName = document.getElementById("location-name")
     locationName.textContent = capitalize(result.resolvedAddress)
-    leftDialog.appendChild(locationName)
 
     const locationTemp = document.getElementById("temp")
     locationTemp.textContent = `${result.currentConditions.temp}\u00B0C`
-    leftDialog.appendChild(locationTemp)
+
+    const conditions = document.getElementById("conditions")
+    conditions.textContent = result.currentConditions.conditions
     dialog.show()
 })
