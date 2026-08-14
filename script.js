@@ -32,12 +32,20 @@ form.addEventListener("submit", async (e) => {
     locationName.textContent = capitalize(result.resolvedAddress)
 
     const locationTemp = document.getElementById("temp")
-    locationTemp.textContent = `${result.currentConditions.temp}${degreeCels}`
+    locationTemp.textContent = `${result.currentConditions.temp}`
+    const degree = document.getElementById("degree")
+    degree.textContent = degreeCels
 
     const conditions = document.getElementById("conditions")
-    conditions.textContent = result.currentConditions.conditions
+    conditions.textContent = `Weather condition: ${result.currentConditions.conditions}`
 
     const feelslike = document.getElementById("feelslike")
     feelslike.textContent = `Feels like: ${result.currentConditions.feelslike}${degreeCels}`
+
+    const humidity = document.getElementById("humidity")
+    humidity.textContent = `Humidity: ${result.currentConditions.humidity} %`
+
+    const uvindex = document.getElementById("uvindex")
+    uvindex.textContent = `UV index: ${result.currentConditions.uvindex}`
     dialog.show()
 })

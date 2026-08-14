@@ -55,6 +55,7 @@ dialog {
 .left {
     display: grid;
     grid-template-rows: 1fr 2fr;
+    border-right: 1px solid black;
 }
 
 #location-name {
@@ -63,9 +64,18 @@ dialog {
     padding: 1px;
 }
 
+.temp-degree {
+    display: flex;
+    align-items: center;
+}
+
+
 #temp {
     grid-row: 2 / 3;
     font-size: 8em;
+}
+#degree {
+    font-size: 5em;
 }
 
 .right {
