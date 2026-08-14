@@ -30,7 +30,7 @@ function getHtmlData() {
 
 async function fetchData(location) {
     try {
-        const fetched = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location.value}/?key=93AYJZ55PKFC6XT7D5FMLZGF6&unitGroup=uk`)
+        const fetched = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/?key=93AYJZ55PKFC6XT7D5FMLZGF6&unitGroup=uk`)
         const result = await fetched.json()
         return result
     } catch(error) {
@@ -38,8 +38,20 @@ async function fetchData(location) {
     }
 }
 
+(async function () {
+    const result = await fetchData("Nagoya")
+    const html = getHtmlData()
+
+    html.locationName.textContent = capitalize(result.resolvedAddress)
+    html.locationTemp.textContent = result.currentConditions.temp
+    html.conditions.textContent = `"${result.currentConditions.conditions}`
+    html.feelslike.textContent = `Feels like: ${result.currentConditions.feelslike}${degreeCels}`
+    html.humidity.textContent = `Humidity: ${result.currentConditions.humidity}%`
+    html.uvindex.textContent = `UV index: ${result.currentConditions.uvindex}`
+})()
+
 form.addEventListener("submit", async (e) => {
-    const result = await fetchData(locationInput)
+    const result = await fetchData(locationInput.value)
     const html = getHtmlData()
 
     console.log(result)
@@ -48,7 +60,7 @@ form.addEventListener("submit", async (e) => {
     html.locationTemp.textContent = `${result.currentConditions.temp}`
     
 
-    html.conditions.textContent = `Weather condition: ${result.currentConditions.conditions}`
+    html.conditions.textContent = `"${result.currentConditions.conditions}"`
 
     html.feelslike.textContent = `Feels like: ${result.currentConditions.feelslike}${degreeCels}`
 

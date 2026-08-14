@@ -83,6 +83,7 @@ dialog {
 
 
 #temp {
+    font-weight: bolder;
     grid-row: 2 / 3;
     font-size: 8em;
 }
@@ -92,12 +93,14 @@ dialog {
 
 .right {
     display: grid;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     grid-template-rows: 1fr 1fr 1fr 1fr;
+    margin-left: 2rem;
 }
 
 #conditions {
+    font-style: italic;
     font-size: 1.5em;
     grid-row: 1 / 2;
 }
