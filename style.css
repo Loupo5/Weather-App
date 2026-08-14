@@ -5,6 +5,7 @@
 }
 
 body {
+    position: relative;
     background: url("background-img.jpg") no-repeat;
     background-size: cover;
     background-position: center;
@@ -13,8 +14,10 @@ body {
     justify-content: center;
 }
 form {
-    text-align: right;
-    width: 100%;
+    position: absolute;
+    top: 1rem;
+    right: 0.7rem;
+    width: 30%;
     padding: 3em;
 }
 form label {
@@ -31,20 +34,53 @@ form button {
 }
 
 dialog {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: absolute;
     background: whitesmoke;
-    width: 40%;
-    height: 35%;
+    width: 50%;
+    height: 40%;
     border-radius: 10px;
 
-    top: 45%;
-    left: 50%;
+    top: 60%;
+    left: 35%;
     transform: translate(-50%, -50%)
 }
-#location-name .capitalize-all-words {
-    text-transform: capitalize;
+
+.left {
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 1fr 2fr;
 }
+
 #location-name {
+    grid-row: 1 / 2;
     font-size: 1.3em;
     color: black;
     padding: 1px;
+}
+
+#temp {
+    grid-row: 2 / 3;
+}
+
+.right {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+#conditions {
+    grid-row: 1 / 2;
+}
+
+#feelslike {
+    grid-row: 2 / 3;
+}
+
+#humidity {
+    grid-row: 3 / 4;
+}
+
+#uvindex {
+    grid-row: 4 / 5;
 }
