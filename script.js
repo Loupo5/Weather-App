@@ -14,6 +14,20 @@ function capitalize(str) {
     return firstLetter + restLetters
 }
 
+function getHtmlData() {
+    const locationName = document.getElementById("location-name")
+    const locationTemp = document.getElementById("temp")
+    const conditions = document.getElementById("conditions")
+    const feelslike = document.getElementById("feelslike")
+    const humidity = document.getElementById("humidity")
+    const uvindex = document.getElementById("uvindex")
+
+    return {locationName, locationTemp, conditions,
+            feelslike, humidity, uvindex}
+
+}
+
+
 async function fetchData(location) {
     try {
         const fetched = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location.value}/?key=93AYJZ55PKFC6XT7D5FMLZGF6&unitGroup=uk`)
@@ -26,26 +40,20 @@ async function fetchData(location) {
 
 form.addEventListener("submit", async (e) => {
     const result = await fetchData(locationInput)
+    const html = getHtmlData()
 
     console.log(result)
-    const locationName = document.getElementById("location-name")
-    locationName.textContent = capitalize(result.resolvedAddress)
+    html.locationName.textContent = capitalize(result.resolvedAddress)
 
-    const locationTemp = document.getElementById("temp")
-    locationTemp.textContent = `${result.currentConditions.temp}`
-    const degree = document.getElementById("degree")
-    degree.textContent = degreeCels
+    html.locationTemp.textContent = `${result.currentConditions.temp}`
+    
 
-    const conditions = document.getElementById("conditions")
-    conditions.textContent = `Weather condition: ${result.currentConditions.conditions}`
+    html.conditions.textContent = `Weather condition: ${result.currentConditions.conditions}`
 
-    const feelslike = document.getElementById("feelslike")
-    feelslike.textContent = `Feels like: ${result.currentConditions.feelslike}${degreeCels}`
+    html.feelslike.textContent = `Feels like: ${result.currentConditions.feelslike}${degreeCels}`
 
-    const humidity = document.getElementById("humidity")
-    humidity.textContent = `Humidity: ${result.currentConditions.humidity} %`
+    html.humidity.textContent = `Humidity: ${result.currentConditions.humidity} %`
 
-    const uvindex = document.getElementById("uvindex")
-    uvindex.textContent = `UV index: ${result.currentConditions.uvindex}`
+    html.uvindex.textContent = `UV index: ${result.currentConditions.uvindex}`
     dialog.show()
 })

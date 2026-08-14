@@ -55,7 +55,7 @@ dialog {
 .left {
     display: grid;
     grid-template-rows: 1fr 2fr;
-    border-right: 1px solid black;
+    border-right: 3px solid rgba(0, 0, 0, 0.3);
 }
 
 #location-name {
