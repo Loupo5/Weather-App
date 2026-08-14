@@ -27,8 +27,18 @@ function getHtmlData() {
 
 }
 
+function fetchData(location) {
+    return new Promise(function(resolve, reject) {
+        fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/?key=93AYJZ55PKFC6XT7D5FMLZGF6&unitGroup=uk`)
+        .then(result => result.json())
+        .then(data => {
+            resolve(data)
+        })
+    })
+}
 
-async function fetchData(location) {
+
+/*async function fetchData(location) {
     try {
         const fetched = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/?key=93AYJZ55PKFC6XT7D5FMLZGF6&unitGroup=uk`)
         const result = await fetched.json()
@@ -36,7 +46,7 @@ async function fetchData(location) {
     } catch(error) {
         console.error("Couldnt fetch location", error)
     }
-}
+}*/
 
 (async function () {
     const result = await fetchData("Nagoya")
